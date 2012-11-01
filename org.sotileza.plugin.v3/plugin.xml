@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+    <?eclipse version="3.4"?>  
+    <plugin>  
+		
+       <extension  
+             point="org.eclipse.ui.menus"> 
+          <menuContribution  
+                locationURI="popup:org.eclipse.jdt.ui.PackageExplorer">  
+             <command  
+                   commandId="es.sotileza.plugin.generator"  
+                  label="Sotilizator"  
+                  style="push">  
+                  <visibleWhen>  
+                  <with  
+                        variable="activeMenuSelection">  
+                  </with>  
+               </visibleWhen>  
+            </command>  
+         </menuContribution>  
+      </extension>  
+      <extension  
+            point="org.eclipse.ui.commands">  
+         <command  
+               defaultHandler="es.sotileza.plugin.handler.Generator"  
+               id="es.sotileza.plugin.generator"  
+               name="Convert">  
+         </command>  
+      </extension>  
+     
+   </plugin>  

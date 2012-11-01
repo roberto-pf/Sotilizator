@@ -1,0 +1,2 @@
+En esta carpeta se colocarán los ficheros necesarios
+para la configuración del oc4j.

@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<!DOCTYPE application PUBLIC 
+  "-//Sun Microsystems, Inc. //DTD J2EE Application 1.2//EN"
+  "http://java.sun.com/j2ee/dtds/application_1_2.dtd">
+
+<application>
+	<display-name>Var_NOMBREAPP</display-name>
+	<description>Sotileza App</description>
+	<module>
+		<web>
+			<web-uri>Var_NOMBREAPP.war</web-uri>
+			<context-root>/Var_NOMBREAPP</context-root>
+		</web>
+	</module>
+</application>
+

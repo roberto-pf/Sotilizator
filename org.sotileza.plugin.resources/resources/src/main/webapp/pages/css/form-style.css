@@ -1,0 +1,127 @@
+/********************************************************************
+
+Project: Formee - http://www.formee.org
+Last Updated: 19/04/2010
+Version: 1.1
+Authors: Bernard De Luna - http://www.bernarddeluna.com
+             Daniel Araujo - http://www.dnlaraujo.com.br
+			 Marcello Manso - http://www.marcellomanso.com.br
+			 
+********************************************************************
+Style
+********************************************************************/
+
+
+
+/* Form Style */
+.form {font: normal 12px/1em arial, Verdana, "Trebuchet MS", Helvetica, sans-serif;}
+
+.form fieldset {
+	border-top:3px solid #BDC7D7;
+	background:#efefef;
+	padding-bottom: 1.2em;
+	margin: 0 0 2em;
+	border-left: 1px solid #BFBFBF;
+	border-right: 1px solid #BFBFBF;
+	border-bottom: 1px solid #BFBFBF;
+}
+.form table {
+	margin-bottom: 1.5em !important;
+}
+
+div#col_derecha_app fieldset {
+	border:none;
+	margin-bottom: .5em;
+}
+
+/* hover effect 
+.grid-1-12:hover, .grid-2-12:hover, .grid-3-12:hover, .grid-4-12:hover, .grid-5-12:hover, .grid-6-12:hover, .grid-7-12:hover, .grid-8-12:hover, .grid-9-12:hover, .grid-10-12:hover, .grid-11-12:hover, .grid-12-12:hover {background:#e5e5e5;}*/
+#col_derecha_app .grid-1-12:hover, #col_derecha_app .grid-2-12:hover, #col_derecha_app .grid-3-12:hover, #col_derecha_app .grid-4-12:hover, #col_derecha_app .grid-5-12:hover, #col_derecha_app .grid-6-12:hover, #col_derecha_app .grid-7-12:hover, #col_derecha_app .grid-8-12:hover, #col_derecha_app .grid-9-12:hover, #col_derecha_app .grid-10-12:hover, #col_derecha_app .grid-11-12:hover, #col_derecha_app .grid-12-12:hover {background: transparent;}
+.field-button:hover {background:transparent;}
+
+
+/* Form legend and titles */
+.form legend {
+	font-size:1.6em;
+	padding: .5em;
+	margin-bottom: 10px;
+	background:#BDC7D7;
+	margin-left:1.04%;
+}
+
+/* form elements  */
+.form-lbl, .form label {
+	font-size:1em;
+	font-weight: bolder;
+}
+.form-req {
+	font-weight: bold;
+	font-style:normal;
+	color:#d10000;
+	font-size:1.4em;
+}
+.form .form-txt, .form input[type=text], .form input[type=password], .form textarea, .form select {
+	border-color:#A6A6A6;
+	background: #fff url(../img/bg_input.gif) repeat-x;
+	color:#333;
+	font: normal 12px/1em arial, Verdana, "Trebuchet MS", Helvetica, sans-serif;
+	border-radius: 3px;
+}
+.form .form-txt:focus, .form input[type=text]:focus, .form textarea:focus, .form select:focus {
+	background: #ffffaa;
+}
+
+
+/* form msg status  */
+.form-msg-info, .form-msg-warning, .form-msg-error, .form-msg-success {
+	padding-left: 27px;
+	font-size:0.9em;
+	border-bottom: 1px solid #ccc;
+}
+.form-msg-info {
+	background: #d1ecf7 url(../img/form-ic-info.png) no-repeat 5px 4px;
+	border-color:#bcdfef;
+	color:#11689e;
+}
+.form-msg-warning {
+	background: #fff6bf url(../img/form-ic-warning.png) no-repeat 5px 4px;
+	border-color:#fceb77;
+	color:#957210;
+}
+.form-msg-error {
+	background: #fad0d0 url(../img/form-ic-error.png) no-repeat 5px 4px;
+	border-color:#f6abab;
+	color:#b01717;
+}
+.form-msg-success {
+	background: #e5f8ce url(../img/form-ic-success.png) no-repeat 5px 4px;
+	border-color:#d0f1a6;
+	color:#62b548;
+}
+
+
+/* form buttons */
+.form-button {
+	font-size:1.2em;
+	background:#235485;
+	color:#fff;
+}
+.form-button:hover {background:#666;}
+
+.filtro_tabla fieldset {
+	border: 0px none;
+	margin-bottom: 0px;
+	background: #EFEFEF url(../img/pixel.png) repeat-x 0% 0%;
+	padding-bottom: 0px;
+}
+
+.botonera{
+	padding: 0;
+	margin: .5em;
+}
+
+.form-readonly, input[readonly]{
+	background: transparent !important;
+	/*border: 0 none !important;*/
+	border: 1px solid #A6A6A6 !important;
+}

@@ -1,0 +1,1096 @@
+
+@import url(reset.css);
+@import url(text.css);
+@import url(grid.css);
+@import url(form-structure.css);
+@import url(form-style.css);
+@import url(jquery-ui.css);
+@import url(validationEngine.css);
+@import url(sexybuttons.css);
+@import url(tipTip.css);
+@import url(fullcalendar.css);
+@import url(superfish.css);
+@import url(efectos.css);
+@import url(listnav.css);
+@import url(jquery.treeview.css);
+@import url(jquery.qtip.css);
+@import url(jquery.cleditor.css);
+/*@import url(dlbScriptCrossBrowser.css);*/
+
+
+@font-face {
+	font-family: 'Lobster';
+	src: url('Lobster_1.3-webfont.eot');
+	src: local('Lobster'), url('Lobster_1.3-webfont.woff') format('woff'), url('Lobster_1.3-webfont.ttf') format('truetype'), url('Lobster_1.3-webfont.svg#webfontLXW01n4B') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+html{ height: 100%;}
+body{
+	font: "Helvetica Neue", Helvetica, Arial, clean, sans-serif;
+	height: 100%;
+	position: relative;
+}
+
+/*
+	1. Estructura de la p�gina.
+*/
+div#seccion_sup{
+	position: relative;
+	width: 100%;
+	height: 100px;
+	padding-top: .5em;
+}
+	div#seccion_sup #cont_menu_app{
+		position:absolute;
+		right:0px;
+		width:300px;
+		top: 30px;
+		z-index: 999;
+	}
+		div#seccion_sup #a_menu_app{
+			display: block;
+			clear:both;
+			padding: .25em 0em .25em 0px;
+			text-decoration: none;
+			width:100%;
+			text-align: center;
+		}
+		div#seccion_sup ul#menu_aplicaciones{
+			display:none;
+		   	width:285px;
+		    border-top: 0 none;
+		    width:100%;
+		}
+			#menu_aplicaciones li {
+				text-align: left;
+			    width:100%;
+			    margin: 0px;
+			}
+			
+			#menu_aplicaciones li.grupo span {
+				padding: .5em;
+				background: #3B69AB;
+				color: #fff;
+				display: block;
+			}
+			
+			#menu_aplicaciones li:first-child{
+				background-image: none;
+			}
+				#menu_aplicaciones li a {
+				    text-decoration:none;
+				    padding:.25em 1em .25em 0px;
+				    display:block;
+				    margin-left: .5em;
+				}
+				
+				#menu_aplicaciones li ul li a {
+				    margin-left: 1.5em;
+				}
+					
+	#seccion_sup ul#main_nav {
+		bottom: -1px;
+		height: 2.5em;
+		margin-bottom: 0px;
+		position: absolute;
+		z-index: 99;
+		overflow: visible;
+		z-index: 99;
+	}
+	
+		#seccion_sup ul#main_nav li {
+			float:left;
+			text-align:center;
+			list-style-type:none;
+			font-weight:normal;
+			position: relative;
+			padding: 0 0.5em;
+			/*border-right: none;*/
+			z-index: 90;
+		}
+		
+		#seccion_sup ul#main_nav li.active {
+			z-index: 100;
+		}
+			#seccion_sup ul#main_nav li a {
+				text-decoration:none;
+				display:block;
+				float:left;
+				padding: 6px 6px 5px;
+				font-weight: bold;
+			}
+			#seccion_sup ul#main_nav li.active a {
+				z-index: 99;
+				padding: 6px;
+			}
+			#seccion_sup ul#main_nav li span a {
+				padding: 3px 0 !important;
+			}
+div#seccion_login{
+	margin-top: 100px;
+	padding: 1em;
+}
+	div#opciones_login {
+		float: left;
+		width: 60%;
+		border-right: 1px dotted #e5e5e5;
+		padding: 0 .5em;
+	}
+	div#opciones_password {
+		float: right;
+		width: 35%;
+	}
+	div#seccion_login  a{
+		text-decoration: none;
+		padding: .2em;
+	}
+	
+	div#seccion_login label, div#seccion_login input{
+		font-size: 150%;
+	}
+
+div#apps_panel{
+	z-index: 95;
+	height: 100%;
+}
+	div#apps_panel .panel_app{
+		height: 100%;
+	}
+	div#apps_panel iframe{
+		border: 0px none;
+		z-index: 50 !important;
+		background-color: #EFEFEF;
+	}
+		
+		div.nav_app{
+			float: left;
+			display: block;
+			width: 100%;
+			padding: 6px 0;
+			z-index: 50 !important;
+		}
+		
+			div.nav_app ul{
+				display: block;
+			}
+				div.nav_app ul li:first-child{
+					border-left: none;
+					background-image: none;
+				}
+				div.nav_app ul li:first-child a{
+					margin-left: 0 !important;
+				}
+				div.nav_app ul li {
+					float: left;
+					white-space: nowrap;
+				}
+					div.nav_app ul li a {
+						text-decoration:none;
+						height:2em;
+						line-height:2em;
+						margin: 0 .5em;
+					}
+					
+					#seccion_sup ul#main_nav li span a {
+						padding: 0px;
+					}
+							
+					div.nav_app ul li.active, .seccion_contenido ul li.active {
+						background: url(../img/ico/bullet_right.png) left 50% no-repeat;
+					}
+					
+					div.nav_app ul li.active a, .seccion_contenido ul li.active a  {
+						padding-left: 1em !important;
+					}
+					div.nav_app ul li ul li a {
+						margin: 0 !important;
+						padding: .3em !important;
+					}
+		div.contenido_app {
+			float: left;
+			display: block;
+			width: 100%;
+			padding: 0 0 2em 0;
+			height: 100%;
+		}
+		
+			a.a_filtro_tabla{
+				float: right;
+			}
+			
+			div.contenido_app #col_izquierda {
+				height: 100%;
+				padding-bottom: 2em;
+			}
+		
+			div.contenido_app #col_derecha_app {
+				min-height: 400px;
+				margin-top: 1em;
+			}
+			
+			.seccion{
+				clear: both;
+				margin-bottom: 1em;
+			}
+			
+				.seccion .seccion_cabecera{
+					position: relative;
+				}
+			
+				.seccion a{
+					text-decoration: none;
+					padding: .2em;
+				}
+				
+				.seccion h3{
+					position: relative;
+					margin: 0 !important;
+					font-size: 16px;
+					font-weight: bold;
+				}
+					.seccion .op_seccion {
+						position: absolute;
+						right: 5px;
+						top: 5px;
+					}
+					
+					.op_seccion .op_minimizar{
+						background: transparent url(../img/ico/minimise.png) no-repeat 50% 50%;
+						height: 16px;
+						width: 15px;
+						text-indent: -9999px;
+						cursor: pointer;
+					}
+					
+					.op_seccion .maximizado{
+						background: transparent url(../img/ico/maximise.png) no-repeat 50% 50%;
+					}
+					
+				.seccion .seccion_contenido > ul > li{
+					padding: .5em;
+					background-color: #fff;
+					margin: .5em;
+				}
+				
+				.seccion .seccion_contenido p{
+					padding: .5em;
+				}
+div.form_dieta  {
+	padding: 0 1em 0 0;
+	border-right: 1px dashed #BFBFBF;
+}
+	div.form_localidades {
+		height: 180px;
+		overflow: auto;
+	}
+	ul.listItems li{
+		float: left;
+		width: 30%;
+		margin: 0;
+		padding: 0;
+	
+	}
+	
+
+/*
+	Encabezados
+*/
+h1{
+	font-family: 'Trebuchet MS', sans-serif;
+	font-style: normal;
+	font-weight: bold;
+	text-transform: normal;
+	letter-spacing: -1px;
+	line-height: 1.1em;
+}
+div#seccion_sup h1, body#login_body h1{
+	font-family: 'Lobster', arial, serif;
+	font-size: 32px;
+	padding: 0px;
+	margin: 0px;
+	font-size: 38px;
+}
+h2{
+	margin: 1em 0 .4em 0;
+}
+h2:first-child{
+	margin-top: 0px;
+}
+h3{
+	margin:1em 0px .5em !important;
+	font-family: arial, helvetica, sans-serif !important;
+	font-weight: bold !important;
+	text-transform: normal;
+	letter-spacing: normal;
+}
+
+h4{
+	margin: 1em 0 .4em 0;
+}
+
+/*
+	Tablas
+*/
+
+table{
+	width: 100%;
+	clear: both;	
+	margin: 0px;
+}
+table.pijama{
+	margin: 0;
+	
+}
+	thead th {
+		padding: 7px !important;
+		text-align: left;
+	}
+	tfoot th {
+		padding: 7px !important;
+		text-align: left;
+	}
+	th.sorted ,th.sortable{
+		
+	}
+	th.sorted a,th.sortable a {
+		display: block;
+		width: 100%;
+		padding-left: 1em;
+	}
+	th.sortable a {
+		background: url(../img/displaytag/arrow_off.png) center left no-repeat;
+	}
+	
+	th.order1 a, .headerSortDown {
+		background: url(../img/displaytag/arrow_down.png) center left no-repeat;
+	}
+	
+	th.order2 a, .headerSortUp {
+		background: url(../img/displaytag/arrow_up.png) center left no-repeat;
+	}
+	tbody td {
+		vertical-align: middle;
+		padding: 7px !important;
+		border-collapse: collapse;
+		text-align: left;
+	}
+		tbody td .attach {
+			padding-left: 18px;
+			background: url(../img/ico/attach.png) center left no-repeat;:
+		}
+	
+	td.Alta, p.Alta {
+		background: url(../img/ico/bullet_red.png) left 45% no-repeat;
+		padding-left: 1.6em;
+	}
+	td.Media, p.Media {
+		background: url(../img/ico/bullet_orange.png) left 45% no-repeat;
+		padding-left: 1.6em;
+	}
+	td.Baja, p.Baja {
+		background: url(../img/ico/bullet_blue.png) left 45% no-repeat;
+		padding-left: 1.6em;
+	}
+	.table_paging{
+		padding: .5em;
+	}
+	
+	table.calendario{
+		table-layout: fixed;
+	}
+	table.calendario tr td {
+		padding: .5em;
+		vertical-align: top;
+		width: 14.2%;
+		border: 1px solid #BBB;
+		font-size: 0.95em;
+		border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #E2E2E2;
+	}
+	.calendario td.pasado, td.fc-other-month {
+		background: transparent url(../img/bg_calendario_pasado.gif) !important;
+	}
+	table.calendario tr td a {
+		text-decoration: underline;
+		padding: .1em 0 !important;
+	} 
+	table.calendario ul li{
+		white-space: nowrap;
+		overflow: hidden;
+	}
+	
+	.pagelinks{
+		display: block;
+	}
+
+/*
+	Clases generales
+*/
+.redondeado {
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	padding: 3px;
+}
+.tachada{
+	text-decoration: line-through;
+}
+.left{
+	text-align: left !important;
+}
+.right{
+	text-align: right !important;
+}
+.center{
+	text-align: center !important;
+}
+.relative{
+	position: relative;
+}
+
+.media{
+	font-size: 90% !important;
+}
+
+.grande{
+	font-size: 110% !important;
+}
+
+.enorme{
+	font-size: 130% !important;
+	font-weight: bold;
+}
+.sin_borde{
+	border: 0px none !important;
+}
+
+.texto_prioridad {
+	margin-bottom: 1em; 
+	padding: .3em .5em; 
+}
+
+div.form{
+	clear: both;
+}
+
+.no_leido{
+	font-weight: bold;
+}
+.estado{
+	clear: both;
+	margin-left: 2em;
+	padding: .3em;
+	font-size: 12px;
+	font-weight: normal;
+	letter-spacing: normal;
+}
+
+.oculto {
+	display: none;
+}
+
+/*
+	Estilos generales
+*/
+ul{
+	margin: 0px;
+}
+a:active, a:link, a{
+	outline: 0 none !important;
+}
+ol{
+	list-style-position: inside;
+}
+
+p.botonera{
+	text-align: right;
+	margin: .5em 0;
+}
+
+/*
+	Mensajes de la aplicación
+*/
+.mensaje {
+	padding: 2em 2em 3em 7em;
+	border-top: 1px solid;
+	margin-bottom: 1em;
+} 
+
+/*
+	Listas
+*/
+ul.notificaciones li {
+	background: url(../img/ico/bullet_error.png) 5px 7px no-repeat;
+	padding-left: 2em !important;
+}
+ul.eventos li {
+	background: url(../img/ico/bullet_calendar.png) 5px 7px no-repeat;
+	padding-left: 2em !important;
+}
+li.Alta {
+	background: url(../img/ico/bullet_red.png) 5px 7px no-repeat;
+	padding-left: 2em !important;
+}
+li.Media {
+	background: url(../img/ico/bullet_orange.png) 5px 7px no-repeat;
+	padding-left: 2em !important;
+}
+li.Baja {
+	background: url(../img/ico/bullet_blue.png) 5px 7px no-repeat;
+	padding-left: 2em !important;
+}
+dl.lista_datos{
+	clear: both;
+	overflow: hidden;
+	margin: 0px 0px 15px;
+	width: 100%;
+}
+	dl.lista_datos dt {
+		border-bottom-width: 0px;
+		clear: both;
+		float: left;
+		margin-right: -103%;
+		margin-top: -1px;
+		padding-left: 1px;
+		padding-right: 1px;
+		position: relative;
+		width: 100%;
+		min-height: 1.7em;
+		padding: 10px;
+	}
+		dl.lista_datos dt span {
+			display: block;
+			width: 175px;
+			font-weight: bold;
+			text-align: right;
+			font-size: 1em;
+			line-height: 1.6em;
+		}
+	dl.lista_datos dd {
+		float: left;
+		margin-left: 200px;
+		padding-left: 0px;
+		padding-right: 0px;
+		position: relative;
+		z-index: 3;
+		line-height: 1.6em;
+		min-height: 1.7em;
+		padding: 10px;
+		ord-wrap: break-word;
+	}
+	
+ul.tabs_datos {
+	background: url(../img/bg_tabs_data.gif) repeat-x bottom left;
+	display: block;
+	margin: 10px 0px;
+	font-size: 1em;
+	line-height: 1.6em;
+}
+	ul.tabs_datos li {
+		border-bottom: 0px;
+		bottom: -3px;
+		float: left;
+		margin: 0px 6px 0px 0px;
+		position: relative;
+		white-space: nowrap;
+	}
+	ul.tabs_datos li.active{
+		bottom: 0px;
+	}
+		ul.tabs_datos li a {
+			display: block;
+			padding: 6px 12px;
+			text-decoration: none;
+			background-color: transparent !important;
+		}
+		ul.tabs_datos li.active a {
+			padding: 8px 12px;
+			font-weight: bold;
+		}
+ul.datos li{
+	padding: 1em 0px;
+	position: relative;
+}
+	ul.datos li .opciones {
+		position: absolute;
+		right: 0;
+		top: 35%;
+	}
+
+.noTitle .ui-dialog-titlebar {display:none}
+
+ul#listaLocalidades li {
+	display: block;
+	clear: both;
+}
+	ul#listaLocalidades li a.quita_localidad_int span, ul#listaLocalidades li a.quita_localidad_nac span, ul#listaLocalidades li a.quita_localidad_reg span {
+		width: 20px;
+		height: 16px;
+		background: url(../img/ico/delete.png) center center no-repeat;
+		float: left;
+	}
+ul#listaFechas li {
+	display: block;
+	clear: both;
+}
+	ul#listaFechas li a.quita_fecha span {
+		width: 20px;
+		height: 16px;
+		background: url(../img/ico/delete.png) center center no-repeat;
+		float: left;
+	}
+ul#listaPantallas li {
+	display: block;
+	clear: both;
+}
+ul#listaPantallas li a.quita_texto span {
+	width: 20px;
+	height: 16px;
+	background: url(../img/ico/delete.png) center center no-repeat;
+	float: left;
+}
+
+ul#listaAdjuntos li {
+	display: block;
+	clear: both;
+}
+ul#listaAdjuntos li a.quita_file_int span, ul#listaAdjuntos li a.quita_file_nac span, ul#listaAdjuntos li a.quita_file_reg span {
+	width: 20px;
+	height: 16px;
+	background: url(../img/ico/delete.png) center center no-repeat;
+	float: left;
+}
+
+ul#listaAdjuntos li a.ver_adjunto span {
+	width: 20px;
+	height: 16px;
+	background: url(../img/ico/attach.png) center center no-repeat;
+	float: left;
+}
+
+
+ul#listaPersonal_partes li {
+	display: block;
+	clear: both;
+}
+ul#listaPersonal_partes li a.quita_personal span {
+	width: 20px;
+	height: 16px;
+	background: url(../img/ico/delete.png) center center no-repeat;
+	float: left;
+}
+ul#listaPersonal_partes li a.ver_personal span {
+	width: 20px;
+	height: 16px;
+	background: url(../img/ico/magnifier.png) center center no-repeat;
+	float: left;
+}
+ul#listaPersonal_partes li a.edit_personal span {
+	width: 20px;
+	height: 16px;
+	background: url(../img/ico/edit.png) center center no-repeat;
+	float: left;
+}
+
+
+ul#listaTrabajos_partes li {
+	display: block;
+	clear: both;
+}
+ul#listaTrabajos_partes li a.quita_trabajo span {
+	width: 20px;
+	height: 16px;
+	background: url(../img/ico/delete.png) center center no-repeat;
+	float: left;
+}
+ul#listaTrabajos_partes li a.ver_trabajo span {
+	width: 20px;
+	height: 16px;
+	background: url(../img/ico/magnifier.png) center center no-repeat;
+	float: left;
+}
+ul#listaTrabajos_partes li a.edit_trabajo span {
+	width: 20px;
+	height: 16px;
+	background: url(../img/ico/edit.png) center center no-repeat;
+	float: left;
+}
+
+
+ul#listaMaquinaria_partes li {
+	display: block;
+	clear: both;
+}
+ul#listaMaquinaria_partes li a.quita_maquinaria span {
+	width: 20px;
+	height: 16px;
+	background: url(../img/ico/delete.png) center center no-repeat;
+	float: left;
+}
+ul#listaMaquinaria_partes li a.ver_maquinaria span {
+	width: 20px;
+	height: 16px;
+	background: url(../img/ico/magnifier.png) center center no-repeat;
+	float: left;
+}
+ul#listaMaquinaria_partes li a.edit_maquinaria span {
+	width: 20px;
+	height: 16px;
+	background: url(../img/ico/edit.png) center center no-repeat;
+	float: left;
+}
+
+
+ul#listaCarreteras_det_tra li {
+	display: block;
+	clear: both;
+}
+ul#listaCarreteras_det_tra li a.quita_carretera span {
+	width: 20px;
+	height: 16px;
+	background: url(../img/ico/delete.png) center center no-repeat;
+	float: left;
+}
+ul#listaCarreteras_det_tra li a.ver_carretera span {
+	width: 20px;
+	height: 16px;
+	background: url(../img/ico/magnifier.png) center center no-repeat;
+	float: left;
+}
+ul#listaCarreteras_partes li a.edit_carretera span {
+	width: 20px;
+	height: 16px;
+	background: url(../img/ico/edit.png) center center no-repeat;
+	float: left;
+}
+
+
+ul#listaTrabajadores li {
+	display: block;
+	clear: both;
+}
+ul#listaTrabajadores li a.quita_numeroTrab span, ul#listaTrabajadores li a.quita_numeroTrab span, ul#listaTrabajadores li a.quita_numeroTrab span {
+	width: 20px;
+	height: 16px;
+	background: url(../img/ico/delete.png) center center no-repeat;
+	float: left;
+}
+ul#listaRptAux li {
+	display: block;
+	clear: both;
+}
+ul#listaRptAux li a.quita_rpt_aux span, ul#listaRptAux li a.quita_rpt_aux span, ul#listaRptAux li a.quita_rpt_aux span {
+	width: 20px;
+	height: 16px;
+	background: url(../img/ico/delete.png) center center no-repeat;
+	float: left;
+}
+
+
+#Inicio Lotes de Pliegos
+ul#listaLotes li {
+	display: block;
+	clear: both;
+}
+ul#listaLotes li a.quita_lote span {
+	width: 20px;
+	height: 16px;
+	background: url(../img/ico/delete.png) center center no-repeat;
+	float: left;
+}
+#Fin Lotes de Pliegos
+
+#Inicio Lotes-Presup de Pliegos
+ul#listaLotesPresup li {
+	display: block;
+	clear: both;
+}
+ul#listaLotesPresup li a.add_anualidad span {
+	width: 20px;
+	height: 16px;
+	background: url(../img/ico/add.png) center center no-repeat;
+	float: left;
+}
+#Fin Lotes de Pliegos-Presup
+
+#Inicio Lotes-Clasificaciones de Pliegos
+ul#listaLotesClasif li {
+	display: block;
+	clear: both;
+}
+ul#listaLotesClasif li a.add_clasificacion span {
+	width: 20px;
+	height: 16px;
+	background: url(../img/ico/add.png) center center no-repeat;
+	float: left;
+}
+ul#listaLotesClasif li ul li{
+	display: block;
+	clear: both;
+}
+a.quita_clasificacion span {
+	width: 20px;
+	height: 16px;
+	background: url(../img/ico/delete.png) center center no-repeat;
+	float: left;
+}
+#Fin Lotes-Clasificaciones de Pliegos
+		
+		
+#Inicio Anualidades de Pliegos
+ul#listaLotesPresup li ul li{
+	display: block;
+	clear: both;
+}
+a.quita_anualidad span {
+	width: 20px;
+	height: 16px;
+	background: url(../img/ico/delete.png) center center no-repeat;
+	float: left;
+}
+
+a.quita_anualidad_sin_lotes span {
+	width: 20px;
+	height: 16px;
+	background: url(../img/ico/delete.png) center center no-repeat;
+	float: left;
+}
+#Fin Lotes de Pliegos-Presup
+
+#Inicio Criterios de Pliegos
+ul#listaCriterios li {
+	display: block;
+	clear: both;
+}
+ul#listaCriterios li a.quita_criterio span {
+	width: 20px;
+	height: 16px;
+	background: url(../img/ico/delete.png) center center no-repeat;
+	float: left;
+}
+
+ul#listaCriterios li a.modifica_criterio span {
+	width: 20px;
+	height: 16px;
+	background: url(../img/ico/edit.png) center center no-repeat;
+	float: left;
+}
+
+ul#listaCriterios li a.ver_criterio span {
+	width: 20px;
+	height: 16px;
+	background: url(../img/ico/magnifier.png) center center no-repeat;
+	float: left;
+}
+
+#Fin Criterios de Pliegos	
+
+#Inicio Aplicaciones de Pliegos
+ul#listaAplicaciones li ul li{
+	display: block;
+	clear: both;
+}
+a.quita_aplicacion span {
+	width: 20px;
+	height: 16px;
+	background: url(../img/ico/delete.png) center center no-repeat;
+	float: left;
+}
+#Fin Aplicaciones de Pliegos	
+	
+#INICIO VPL
+		
+ul#listaVacacionesVPL li { display: block; clear: both; }
+ul#listaVacacionesVPL li a.quita_vacaciones_vpl span {
+	width: 20px;
+	height: 16px;
+	background: url(../img/ico/delete.png) center center no-repeat;
+	float: left;
+}
+ul#listaLicenciasVPL li { display: block; clear: both; }
+ul#listaLicenciasVPL li a.quita_licencias_vpl span {
+	width: 20px;
+	height: 16px;
+	background: url(../img/ico/delete.png) center center no-repeat;
+	float: left;
+}
+ul#listaPermisosVPL li { display: block; clear: both; }
+ul#listaPermisosVPL li a.quita_permisos_vpl span {
+	width: 20px;
+	height: 16px;
+	background: url(../img/ico/delete.png) center center no-repeat;
+	float: left;
+}
+ul#listaPermisosFamVPL li { display: block; clear: both; }
+ul#listaPermisosFamVPL li a.quita_permisos_fam_vpl span {
+	width: 20px;
+	height: 16px;
+	background: url(../img/ico/delete.png) center center no-repeat;
+	float: left;
+}
+#FIN VPL 	
+		
+.muestra_oculta_wrapper {
+	margin: 1em 0;
+}
+	.muestra_oculta_wrapper a{
+		font-weight: bold;
+		font-size: 110%;
+	}
+
+	#datos_usuario_bahia th, #datos_usuario_bahia td,
+	#dialogoPliego th, #dialogoPliego td
+	 {
+		border-bottom: 1px solid #E2E2E2;
+		padding: .7em;
+	}
+	#datos_usuario_bahia th, #dialogoPliego th{
+		text-align: right;
+		padding-right: 2em;
+		background-color: #efefef;
+		width: 40%;
+		color: #707070;
+		font-weight: normal;
+	}
+
+
+
+.tip_opc {
+	display: none;
+	width: 300px;
+}
+
+.tip_content {
+	display: none;
+	width: 500px;
+}
+
+	.tip_opc ul{
+	}
+
+	.tip_opc ul li{
+		vertical-align: middle;
+		background: #F7F7F7; /* old browsers */
+		background: -moz-linear-gradient(top, #F7F7F7 0%, #FFFFFF 50%, #F7F7F7 100%); /* firefox */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#F7F7F7), color-stop(50%,#FFFFFF), color-stop(100%,#F7F7F7)); /* webkit */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', endColorstr='#F7F7F7',GradientType=0 ); /* ie */
+		float: left;
+		width: 50%;
+		
+	}
+	.tip_content ul li {
+		color: #333;
+		padding: 5px;
+		background: #F7F7F7; /* old browsers */
+		background: -moz-linear-gradient(top, #F7F7F7 0%, #FFFFFF 50%, #F7F7F7 100%); /* firefox */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#F7F7F7), color-stop(50%,#FFFFFF), color-stop(100%,#F7F7F7)); /* webkit */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', endColorstr='#F7F7F7',GradientType=0 ); /* ie */
+		border-top: 1px solid #D6D6D6;
+		line-height: 1.1em;
+	}
+	.tip_content p {
+			color: #333;
+			padding: 5px;
+			background: #F7F7F7; /* old browsers */
+			background: -moz-linear-gradient(top, #F7F7F7 0%, #FFFFFF 50%, #F7F7F7 100%); /* firefox */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#F7F7F7), color-stop(50%,#FFFFFF), color-stop(100%,#F7F7F7)); /* webkit */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', endColorstr='#F7F7F7',GradientType=0 ); /* ie */
+	}	
+	ul.acciones li {
+		color: #333;
+		border-bottom: 1px solid #D6D6D6;
+		line-height: 1.1em;
+		display: block;
+		clear: both;
+	}
+	
+	.tip_opc ul li:hover{
+		background: #fff;
+	}
+	.tip_opc ul li a{
+		line-height: 24px;
+		display: block;
+		height: 24px;
+		padding: 3px;
+		border-top: 1px solid #D6D6D6;
+		border-left: 1px solid #D6D6D6;
+	}
+	
+	ul.acciones li a {
+		line-height: 24px;
+		display: block;
+		height: 24px;
+		padding: 3px;
+	}
+	
+	.tip_opc ul li a:hover {
+		background-color: transparent;
+		color: #3B69AB;
+		font-weight: bold;
+	}
+		.tip_opc ul li a span, ul.acciones li a span{	
+			height: 24px;
+			width:24px;
+			float: left;
+			background-repeat: no-repeat;
+			background-position: center left;
+			vertical-align: middle;
+		}
+
+	blockquote {
+		background: #fff;
+		border-radius: 3px;
+		padding: .5em !important;
+		font-family: Cambria, serif;
+		font-size: 16px !important;
+		font-style: italic;
+		font-weight: normal;
+		text-transform: normal;
+		letter-spacing: normal;
+		line-height: 1.5em;
+		margin-bottom: .5em !important; 
+	}
+		blockquote .editable {
+			font-weight: bold;
+			text-decoration: underline;
+		}
+		
+	.html blockquote {
+		background: transparent;
+		border-radius: 0px;
+		padding: 0;
+		font-family: inherit;
+		font-size: 1em;
+		font-style: normal;
+		font-weight: normal;
+		text-transform: normal;
+		letter-spacing: normal;
+		line-height: 1em;
+		margin-bottom: 0; 
+	}
+	
+	.html ul li{
+		list-style: disc;
+		margin-left: 2em;
+	}
+	
+	li.anotacion .pantalla {
+		font-size: .9em;
+		display: block;
+		font-weight: bold;
+	}
+	
+	
+	table.tabla-zonas thead td{
+		text-align: center;
+	}
+	
+	table.tabla-zonas table td, table.tabla-zona ul li {
+		text-align: left;
+	}
+
+	

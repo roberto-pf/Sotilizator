@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="PruebaLibros" default="07-DEPLOY" basedir=".">
+
+	<property name="app.name" value="PruebaLibros" />
+
+	<property name="build.dir" value="build" />
+	<property name="dist.dir" value="dist" />
+	<property name="target.dir" value="target" />
+	<property name="webapp.dir" value="src/main/webapp" />
+	<property name="reports.dir" value="doc/ireport_2_0_5" />
+	<property name="jasper.dir" value="src/main/reports" />
+
+	<!-- Propiedades para JBOSS  -->
+	<property name="JBoss_Home" value="C:\Entorno Desarrollo\jboss-5.0.1\server\default\deploy" />
+
+	<!-- Propiedades para OC4J  -->
+	<property name="OC4J_HOME" value="C:/Entorno Desarrollo/oc4j_extended_101350" />
+	<property name="admin.jar" value="${OC4J_HOME}/j2ee/home/admin.jar" />
+	<property name="deployment.name" value="${app.name}" />
+
+	<property name="local.test.host" value="ormi://localhost" />
+	<property name="admin.local.username" value="oc4jadmin" />
+	<property name="admin.local.password" value="admin" />
+
+	<!-- Propiedades para TOMCAT  -->
+	<property name="Tomcat_Home" value="C:\Entorno Desarrollo\apache-tomcat-5.5.30\webapps" />
+
+	
+	<!-- Limpieza de ficheros antes de compiler -->
+	<target name="00-clean">
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+		<delete dir="${target.dir}" />
+	</target>
+
+
+	<!-- 
+        Inicialización de las carpetas donde se va a realizar la compilación
+    -->
+	<target name="01-init" depends="00-clean">
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${build.dir}/${app.name}" />
+		<mkdir dir="${build.dir}/${app.name}/reports" />
+		<mkdir dir="${build.dir}/${app.name}/pages" />
+		<mkdir dir="${build.dir}/${app.name}/WEB-INF" />
+		<mkdir dir="${build.dir}/${app.name}/WEB-INF/classes" />
+		<mkdir dir="${build.dir}/${app.name}/WEB-INF/lib" />
+
+		<mkdir dir="${dist.dir}" />
+		<mkdir dir="${dist.dir}/META-INF" />
+		
+		<mkdir dir="${target.dir}" />
+	</target>
+
+
+	<!-- copia las bibliotecas adicionales (jars) a la carpeta de destino -->
+	<target name="02-deploy_libs_OC4J">
+		<copy todir="${build.dir}/${app.name}/WEB-INF/lib" flatten="false">
+			<fileset dir="${webapp.dir}/WEB-INF/lib">
+			    <include name="**"/>
+			    <exclude name="servlet-api*"/>
+				<exclude name="ojdbc14*"/>
+			</fileset>
+		</copy>	
+	</target>
+	<target name="02-deploy_libs_JBOSS">
+		<copy todir="${build.dir}/${app.name}/WEB-INF/lib" flatten="false">
+			<fileset dir="${webapp.dir}/WEB-INF/lib">
+			    <include name="**"/>
+			    <exclude name="servlet-api*"/>
+			</fileset>
+		</copy>	
+	</target>
+	<target name="02-deploy_libs_TOMCAT">
+		<copy todir="${build.dir}/${app.name}/WEB-INF/lib" flatten="false">
+			<fileset dir="${webapp.dir}/WEB-INF/lib">
+			    <include name="**"/>
+			    <exclude name="servlet-api*"/>
+			</fileset>
+		</copy>	
+	</target>
+	
+	
+	<!-- copia las tlds, properties y xml adicionales a las carpetas de destino -->
+	<target name="02-deploy_tlds_xml_properties">
+		<copy todir="${build.dir}/${app.name}/WEB-INF" flatten="true">
+			<fileset dir="${webapp.dir}/WEB-INF" includes="*.tld" />
+			<fileset dir="${webapp.dir}/WEB-INF" includes="*.xml" />
+			<fileset dir="${webapp.dir}/WEB-INF" includes="*.properties" />
+		</copy>
+	</target>
+	
+
+	<!-- Copia del contenido estático -->
+	<target name="02-deploy_jsp">
+		<copy todir="${build.dir}/${app.name}/pages">
+			<fileset dir="${webapp.dir}/pages"/>
+		</copy>
+		<copy todir="${build.dir}/${app.name}">
+			<fileset dir="${webapp.dir}" includes="index.jsp" />
+		</copy>
+		<copy todir="${build.dir}/${app.name}/reports">
+			<fileset dir="src/main/reports" />
+		</copy>
+	</target>
+
+	<target name="02-deploy_archivos_OC4J" depends="02-deploy_libs_OC4J,02-deploy_tlds_xml_properties,02-deploy_jsp" />
+	<target name="02-deploy_archivos_JBOSS" depends="02-deploy_libs_JBOSS,02-deploy_tlds_xml_properties,02-deploy_jsp" />
+	<target name="02-deploy_archivos_Tomcat" depends="02-deploy_libs_TOMCAT,02-deploy_tlds_xml_properties,02-deploy_jsp" />
+
+	<!-- Compila las clases -->
+	<target name="03-compile" depends="compile.reports">
+		<javac destdir="${build.dir}/${app.name}/WEB-INF/classes" srcdir="../${app.name}/src/main/java" compiler="javac1.5" debug="on">
+			<classpath>
+				<fileset dir="../${app.name}/${webapp.dir}/WEB-INF/lib" includes="**" />
+			</classpath>
+		</javac>
+		<copy todir="${build.dir}/${app.name}/WEB-INF/classes">
+			<fileset dir="../${app.name}/src/main/resources" />
+		</copy>
+		
+		<!-- Añadir compilar informes y copiarlos -->
+		
+	</target>
+
+	<!-- Generador del war -->
+	<target name="04-make_WAR">
+		<war destfile="${dist.dir}/${app.name}.war" basedir="${build.dir}/${app.name}" webxml="${webapp.dir}/WEB-INF/web.xml" />
+	</target>
+	
+	<!-- Generador del ear -->
+	<target name="04-make_EAR" depends="04-make_WAR">
+		<copy file="src/main/config/oc4j_config/application.xml" todir="dist/META-INF" />
+		<copy file="src/main/config/oc4j_config/orion-application.xml" todir="dist/META-INF" />
+		<jar basedir="${dist.dir}" compress="true" jarfile="${dist.dir}/${app.name}.ear" />
+	</target>
+
+
+	<!-- JBOSS -->
+	<!-- Deploy la aplicación en el servidor de JBoss. -->
+	<target name="05-DEPLOY_JBOSS" depends="01-init,02-deploy_archivos_JBOSS,03-compile,04-make_WAR" 
+		description="Compila y Despliega en el servidor JBoss">
+		<copy todir="${JBoss_Home}">
+			<fileset dir="${dist.dir}" includes="${app.name}.war" />
+		</copy>
+	</target>
+	<!-- Undeploy de la aplicación en el servidor de JBoss. -->
+	<target name="05-UNDEPLOY_JBOSS" depends="00-clean" description="Hace undeploy de la aplicación ne  el JBoss">
+		<delete dir="${JBoss_Home}" includes="${app.name}.war" />
+	</target>
+
+
+
+	<!-- OC4J -->
+	<target name="06-EAR_OC4J" depends="06-set.config.file.names.localhost,01-init,02-deploy_archivos_OC4J,03-compile,04-make_EAR"
+			description="Crear un EAR de la aplicación en  el OC4j">
+	</target>
+				
+	<target name="06-set.config.file.names.localhost">
+		<property name="test.host" value="${local.test.host}" />
+		<property name="admin.username" value="${admin.local.username}" />
+		<property name="admin.password" value="${admin.local.password}" />
+	</target>
+	<target name="06-DEPLOY_OC4J" depends="06-set.config.file.names.localhost,01-init,02-deploy_archivos_OC4J,03-compile,04-make_EAR" 
+		description="Hace deploy de la aplicación ne  el OC4j">
+		<!--  instalamos la aplicacion ..  -->
+		<java jar="${admin.jar}" fork="true" failonerror="true">
+			<arg value="${test.host}" />
+			<arg value="${admin.username}" />
+			<arg value="${admin.password}" />
+			<arg value="-deploy" />
+			<arg value="-file" />
+			<arg value="${dist.dir}/${app.name}.ear" />
+			<arg value="-deploymentName" />
+			<arg value="${deployment.name}" />
+		</java>
+		<!--  Hacemos bindApp ..   -->
+		<java jar="${admin.jar}" fork="true" failonerror="true">
+			<arg value="${test.host}" />
+			<arg value="${admin.username}" />
+			<arg value="${admin.password}" />
+			<arg value="-bindWebApp" />
+			<arg value="${deployment.name}" />
+			<arg value="${deployment.name}" />
+			<arg value="default-web-site" />
+			<arg value="/${deployment.name}" />
+		</java>
+	</target>
+
+	<target name="06-UNDEPLOY_OC4J" depends="06-set.config.file.names.localhost,00-clean" description="Hace undeploy de la aplicación ne  el OC4j">
+		<!--  desinstalamos la aplicacion ..  -->
+		<java jar="${admin.jar}" fork="true" failonerror="true">
+			<arg value="${test.host}" />
+			<arg value="${admin.username}" />
+			<arg value="${admin.password}" />
+			<arg value="-undeploy" />
+			<arg value="${deployment.name}" />
+		</java>
+	</target>
+
+
+	<!-- TOMCAT -->
+	<!-- Deploy la aplicación en el servidor de Tomcat. -->
+	<target name="05-DEPLOY_TOMCAT" depends="01-init,02-deploy_archivos_Tomcat,03-compile,04-make_WAR" 
+		description="Compila y Despliega en el servidor Tomcat">
+		<copy todir="${Tomcat_Home}">
+			<fileset dir="${dist.dir}" includes="${app.name}.war" />
+		</copy>
+	</target>
+	<!-- Undeploy de la aplicación en el servidor de JBoss. -->
+	<target name="05-UNDEPLOY_TOMCAT" depends="00-clean" description="Hace undeploy de la aplicación ne  el Tomcat">
+		<delete dir="${Tomcat_Home}" includes="${app.name}.war" />
+	</target>
+
+
+	<!-- Despliega tanto en JBOSS como en OC4J -->
+	<target name="07-DEPLOY" depends="05-DEPLOY_JBOSS, 06-DEPLOY_OC4J" />
+
+	
+	<!-- Despliega solamente los ficheros de la carpeta pages -->
+	<target name="08-Deploy.soloPages.OC4J"
+		description="Despliega solamente los ficheros de la carpeta pages (para el OC4J)">
+	        <copy todir="${OC4J_HOME}/j2ee/home/applications/${app.name}/${app.name}/pages">
+		        <fileset dir="${webapp.dir}/pages" >
+		        	<include name="**"/>
+		        </fileset>
+	        </copy>
+	  </target>
+
+	<target name="08-Deploy.soloPages.TOMCAT"
+		description="Despliega solamente los ficheros de la carpeta pages (para el TOMCAT)">
+	        <copy todir="${Tomcat_Home}/${app.name}/pages">
+		        <fileset dir="${webapp.dir}/pages" >
+		        	<include name="**"/>
+		        </fileset>
+	        </copy>
+	  </target>
+	
+	
+	
+	<path id="common.class.path">
+	    <pathelement path="${build.dir}"/>
+	    <fileset dir="${webapp.dir}/WEB-INF/lib" includes="*.jar"/>
+	</path>
+	<taskdef name="jrc" classname="net.sf.jasperreports.ant.JRAntCompileTask">
+		<classpath>
+			<fileset dir="${webapp.dir}/WEB-INF/lib">
+				  <include name="*.jar"/>
+			</fileset>
+		</classpath>
+	</taskdef>
+	<target name="compile.reports" description="compila informes para crear los jasper">
+		<jrc destdir="${jasper.dir}">
+			<src>
+				<fileset dir="${reports.dir}">
+					<include name="**/*.jrxml"/>
+				</fileset>
+			</src>
+			<classpath>
+				<pathelement path="${compile.class.path}"/>
+			</classpath>
+		</jrc>
+	</target>
+	
+	
+</project>

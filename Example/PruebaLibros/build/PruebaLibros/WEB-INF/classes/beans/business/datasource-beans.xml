@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+
+	<!-- Configuración del DataSource como bean -->
+	<bean id="myDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<!-- Configuración del DataSource por JNDI para tomcat -->
+		<property name="jndiName"><value>java:comp/env/jdbc/PRUEBA_LIBROS</value></property>
+		<!--	 Configuración del DataSource por JNDI para oc4j 
+		<property name="jndiName"><value>jdbc/PRUEBA_LIBROS</value></property>
+		-->	
+	</bean>	
+	
+	<!-- Configuración de Hibernate SessionFactory -->
+	<bean id="sessionFactory"
+			class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref local="myDataSource" />
+		</property>
+		
+		<!-- Must references all OR mapping files. -->
+		<property name="mappingResources">
+			<list>
+
+				<value>hibernate/AutorVO.hbm.xml</value>
+
+				<value>hibernate/GeneroVO.hbm.xml</value>
+
+				<value>hibernate/LibroVO.hbm.xml</value>
+			</list>
+		</property>
+	
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+				<prop key="hibernate.connection.pool_size">100</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

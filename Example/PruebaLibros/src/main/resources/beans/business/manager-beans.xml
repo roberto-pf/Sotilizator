@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<!-- Para AutorManager -->
+	<bean id="autorManager" class="es.com.disastercode.prueba.business.manager.AutorManager">
+		<property name="autorDAO"><ref bean="autorDAO"/></property>
+		<property name="libroDAO"><ref bean="libroDAO"/></property>
+	</bean>
+
+	<!-- Para GeneroManager -->
+	<bean id="generoManager" class="es.com.disastercode.prueba.business.manager.GeneroManager">
+		<property name="generoDAO"><ref bean="generoDAO"/></property>
+		<property name="libroDAO"><ref bean="libroDAO"/></property>
+	</bean>
+
+	<!-- Para LibroManager -->
+	<bean id="libroManager" class="es.com.disastercode.prueba.business.manager.LibroManager">
+		<property name="libroDAO"><ref bean="libroDAO"/></property>
+	</bean>
+</beans>

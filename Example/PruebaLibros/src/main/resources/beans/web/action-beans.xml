@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean name="/Welcome" class="es.com.disastercode.prueba.web.action.InicioAction" singleton="false"> 
+	</bean>
+
+	<!-- Action del maestro de AutorVO -->
+	<bean name="/MaestroAutorAction" class="es.com.disastercode.prueba.web.action.MaestroAutorAction" singleton="false">
+		<property name="autorDelegate"><ref bean="autorDelegate"/></property>
+	</bean>
+
+
+	<!-- Action del maestro de GeneroVO -->
+	<bean name="/MaestroGeneroAction" class="es.com.disastercode.prueba.web.action.MaestroGeneroAction" singleton="false">
+		<property name="generoDelegate"><ref bean="generoDelegate"/></property>
+	</bean>
+
+
+	<!-- Action del maestro de LibroVO -->
+	<bean name="/MaestroLibroAction" class="es.com.disastercode.prueba.web.action.MaestroLibroAction" singleton="false">
+		<property name="libroDelegate"><ref bean="libroDelegate"/></property>
+		<property name="autorDelegate"><ref bean="autorDelegate"/></property>
+		<property name="generoDelegate"><ref bean="generoDelegate"/></property>
+	</bean>
+
+</beans>

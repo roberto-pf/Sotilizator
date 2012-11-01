@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="es.com.disastercode.prueba.business.vo.AutorVO" table="AUTOR" schema="PRUEBA_LIBROS">
+		<id name="idAutor" type="long" unsaved-value="0">
+			<column name="id_autor" precision="22" scale="0"/>
+			<generator class="sequence">
+				<param name="sequence">PRUEBA_LIBROS.SEQ_PK_AUTOR</param>
+			</generator>
+		</id>
+		<property name="nombre" type="string">
+			<column name="nombre" length="50"/>
+		</property>
+		<property name="apellidos" type="string">
+			<column name="apellidos" length="100"/>
+		</property>
+		<property name="fechaNacimiento" type="date">
+			<column name="fecha_nacimiento"/>
+		</property>
+		<property name="telefono" type="string">
+			<column name="telefono" length="30"/>
+		</property>
+		<property name="mujer" type="java.lang.Boolean">
+			<column name="mujer"/>
+		</property>
+		<property name="hombre" type="java.lang.Boolean">
+			<column name="hombre"/>
+		</property>
+		<set name="libros" table="LIBROS" inverse="true" lazy="false" fetch="select" schema="PRUEBA_LIBROS" cascade="delete">
+			<key>
+				<column name="id_autor" precision="22" scale="0" not-null="true"/>
+			</key>
+			<one-to-many class="es.com.disastercode.prueba.business.vo.LibroVO" />
+		</set>
+	</class>
+</hibernate-mapping>

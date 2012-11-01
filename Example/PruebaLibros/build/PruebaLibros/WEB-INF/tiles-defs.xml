@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+ <!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+       "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+
+<tiles-definitions>
+
+    <definition name="app.layout" path="/pages/tiles/layouts/appLayout.jsp" >
+        <put name="app.head" value="../appHead.jsp" />
+    	<put name="app.cabecera" value="../appCabecera.jsp" />
+    	<put name="app.cuerpo" value="../appCuerpo.jsp" />
+    </definition>
+    
+    <definition name="app.soloCuerpo" path="/pages/tiles/layouts/SimpleLayout.jsp" >
+    	<put name="app.cuerpo" value="../appCuerpo.jsp" />
+    </definition>
+	
+    <definition name="app.error" extends="app.layout" >
+    	<put name="app.cabecera" value="" />
+    	<put name="app.cuerpo" value="../../error.jsp" />
+    </definition>
+    
+	<definition name="app.inicio" extends="app.layout">
+		<put name="app.cuerpo" value="../cuerpos/inicio.jsp"/>
+	</definition>    
+	
+		
+
+
+	<definition name="app.maestros.autor" extends="app.layout">
+		<put name="app.cuerpo" value="../cuerpos/maestros/autor/consulta.jsp" />
+	</definition>
+
+	<definition name="app.maestros.genero" extends="app.layout">
+		<put name="app.cuerpo" value="../cuerpos/maestros/genero/consulta.jsp" />
+	</definition>
+
+	<definition name="app.maestros.libro" extends="app.layout">
+		<put name="app.cuerpo" value="../cuerpos/maestros/libro/consulta.jsp" />
+	</definition>
+</tiles-definitions>

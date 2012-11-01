@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<!-- Para AutorDelegate -->
+	<bean id="autorDelegate" class="es.com.disastercode.prueba.web.delegate.AutorDelegate">
+		<property name="autorManager"><ref bean="autorManager"/></property>
+	</bean>
+
+	<!-- Para GeneroDelegate -->
+	<bean id="generoDelegate" class="es.com.disastercode.prueba.web.delegate.GeneroDelegate">
+		<property name="generoManager"><ref bean="generoManager"/></property>
+	</bean>
+
+	<!-- Para LibroDelegate -->
+	<bean id="libroDelegate" class="es.com.disastercode.prueba.web.delegate.LibroDelegate">
+		<property name="libroManager"><ref bean="libroManager"/></property>
+	</bean>
+</beans>

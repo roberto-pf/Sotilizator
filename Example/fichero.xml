@@ -1,0 +1,28 @@
+<generador>
+	<nombreApp>PruebaLibros</nombreApp>
+	<workspace>C:\Entorno Desarrollo\WorkPrueba</workspace>
+	<minusculas>true</minusculas>
+	<host>jdbc:oracle:thin:@localhost:1521:XE</host>
+	<user>PRUEBA_LIBROS</user>
+	<pass>PRUEBA_LIBROS</pass>
+	<ds>PRUEBA_LIBROS</ds>
+	<pakete>es.com.disastercode.prueba</pakete>	
+	<tablas>
+		<tabla nombre="AUTOR" secuencia="SEQ_PK_AUTOR" esquema="PRUEBA_LIBROS">
+			<objeto>Autor</objeto>
+			<nivel>maestro</nivel>
+			<set>true</set>
+		</tabla>
+		<tabla nombre="GENERO" secuencia="SEQ_PK_GENERO" esquema="PRUEBA_LIBROS">
+			<objeto>Genero</objeto>
+			<nivel>maestro</nivel>
+			<set>true</set>
+		</tabla>
+		<tabla nombre="LIBROS" secuencia="SEQ_PK_LIBROS" esquema="PRUEBA_LIBROS">
+			<objeto>Libro</objeto>
+			<nivel>maestro</nivel>
+		</tabla>
+	</tablas>
+
+
+</generador>
